@@ -24,7 +24,7 @@ const checkCarPayload = (req, res, next) => {
   const { vin, make, model, mileage } = req.body;
 
   if (vin && make && model && mileage) {
-    next;
+    next();
   } else {
     const missingFields = [];
     if (!vin) {

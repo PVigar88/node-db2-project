@@ -17,14 +17,7 @@ const create = async (car) => {
 
   const { vin, make, model, mileage, title, transmission } = car;
 
-  const [id] = await db("cars").insert({
-    vin: vin,
-    make: make,
-    model: model,
-    mileage: mileage,
-    title: title,
-    transmission: transmission,
-  });
+  const [id] = await db("cars").insert(car);
 
   return getById(id);
 };

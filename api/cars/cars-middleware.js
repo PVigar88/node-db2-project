@@ -2,7 +2,7 @@ const db = require("../../data/db-config");
 const Car = require("../cars/cars-model");
 const vinValidator = require("vin-validator");
 
-const checkCarId = (req, res, next) => {
+const checkCarId = async (req, res, next) => {
   // DO YOUR MAGIC
   try {
     const car = await Car.getById(req.params.id);
@@ -28,18 +28,22 @@ const checkCarPayload = (req, res, next) => {
   } else {
     const missingFields = [];
     if (!vin) {
-      missingFields.push(vin);
+      //missingFields.push(vin);
+      res.status(400).json({ message: `vin is missing` });
     }
     if (!make) {
-      missingFields.push(make);
+      //missingFields.push(make);
+      res.status(400).json({ message: `make is missing` });
     }
     if (!model) {
-      missingFields.push(model);
+      //missingFields.push(model);
+      res.status(400).json({ message: `model is missing` });
     }
     if (!mileage) {
-      missingFields.push(mileage);
+      //missingFields.push(mileage);
+      res.status(400).json({ message: `mileage is missing` });
     }
-    res.status(400).json(`${missingFields} is missing`);
+    //res.status(400).json({ message: `${missingFields} is missing` });
   }
 };
 
@@ -55,7 +59,7 @@ const checkVinNumberValid = (req, res, next) => {
   }
 };
 
-const checkVinNumberUnique = (req, res, next) => {
+const checkVinNumberUnique = async (req, res, next) => {
   // DO YOUR MAGIC
 
   const vin = req.body.vin;

@@ -6,13 +6,13 @@ const getAll = () => {
   return db("cars");
 };
 
-const getById = () => {
+const getById = (id) => {
   // DO YOUR MAGIC
 
   return db("cars").where({ id }).first();
 };
 
-const create = (car) => {
+const create = async (car) => {
   // DO YOUR MAGIC
 
   const { vin, make, model, mileage, title, transmission } = car;

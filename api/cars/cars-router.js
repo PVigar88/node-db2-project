@@ -1,6 +1,6 @@
 // DO YOUR MAGIC
 
-const router = require("express)").Router();
+const express = require("express");
 const Cars = require("./cars-model");
 const {
   checkCarId,
@@ -8,6 +8,8 @@ const {
   checkVinNumberValid,
   checkVinNumberUnique,
 } = require("./cars-middleware");
+
+const router = express.Router();
 
 router.get("/", (req, res, next) => {
   Cars.getAll()
@@ -47,3 +49,4 @@ router.post(
       });
   }
 );
+module.exports = router;
